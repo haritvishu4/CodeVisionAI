@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Reports
+reports/*.html
+reports/*.json
