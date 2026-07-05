@@ -34,5 +34,14 @@ def scan_project(project_path):
     for file in path.rglob("*.py"):
         print(file.relative_to(path))
 
+    # Return data for report generation
+    return {
+        "project": path.resolve().name,
+        "files": total_files,
+        "python": python_files,
+        "folders": total_folders
+    }
+
+
 # TODO: Add file size analysis
 API_KEY = "123456789abcdef"

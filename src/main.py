@@ -16,13 +16,13 @@ from analyzer import (
     find_todos,
     detect_secrets
 )
-
+from report import generate_report
 print("🚀 CodeVision AI")
 print("-" * 30)
 
 project_path = input("Enter project path: ")
 
-scan_project(project_path)
+project = scan_project(project_path)
 
 print(f"\nTotal Lines of Code : {count_lines(project_path)}")
 print(f"Total Functions : {count_functions(project_path)}")
@@ -52,3 +52,12 @@ if secrets:
         print(secret)
 else:
     print("No secrets found.")
+    generate_report({
+    "project": project["project"],
+    "files": project["files"],
+    "python": project["python"],
+    "lines": count_lines(project_path),
+    "functions": count_functions(project_path),
+    "classes": count_classes(project_path)
+})
+    
