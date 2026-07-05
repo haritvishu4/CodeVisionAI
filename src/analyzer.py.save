@@ -67,27 +67,4 @@ def count_classes(project_path):
         except Exception:
             pass
 
-    return total_classes
-def list_imports(project_path):
-    path = Path(project_path)
-
-    imports = set()
-
-    for file in path.rglob("*.py"):
-        try:
-            with open(file, "r", encoding="utf-8") as f:
-                tree = ast.parse(f.read())
-
-            for node in ast.walk(tree):
-                if isinstance(node, ast.Import):
-                    for alias in node.names:
-                        imports.add(alias.name)
-
-                elif isinstance(node, ast.ImportFrom):
-                    if node.module:
-                        imports.add(node.module)
-
-        except Exception:
-            pass
-
-    return sorted(imports)
+    return total_classes\
