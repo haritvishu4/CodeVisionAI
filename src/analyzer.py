@@ -91,3 +91,18 @@ def list_imports(project_path):
             pass
 
     return sorted(imports)
+def find_todos(project_path):
+    path = Path(project_path)
+
+    todos = []
+
+    for file in path.rglob("*.py"):
+        try:
+            with open(file, "r", encoding="utf-8") as f:
+                for line_no, line in enumerate(f, start=1):
+                    if "TODO" in line or "FIXME" in line:
+                        todos.append(f"{file.relative_to(path)} : Line {line_no} -> {line.strip()}")
+        except Exception:
+            pass
+
+    return todos

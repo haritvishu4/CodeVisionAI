@@ -34,3 +34,4 @@ def scan_project(project_path):
     for file in path.rglob("*.py"):
         print(file.relative_to(path))
 
+# TODO: Add file size analysis
