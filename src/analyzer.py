@@ -106,3 +106,30 @@ def find_todos(project_path):
             pass
 
     return todos
+import re
+
+def detect_secrets(project_path):
+    path = Path(project_path)
+
+    patterns = [
+        r"API_KEY\s*=",
+        r"SECRET_KEY\s*=",
+        r"PASSWORD\s*=",
+        r"TOKEN\s*=",
+    ]
+
+    secrets = []
+
+    for file in path.rglob("*.py"):
+        try:
+            with open(file, "r", encoding="utf-8") as f:
+                for line_no, line in enumerate(f, start=1):
+                    for pattern in patterns:
+                        if re.search(pattern, line):
+                            secrets.append(
+                                f"{file.relative_to(path)} : Line {line_no} -> {line.strip()}"
+                            )
+        except Exception:
+            pass
+
+    return secrets

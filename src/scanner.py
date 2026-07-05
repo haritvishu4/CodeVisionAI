@@ -35,3 +35,4 @@ def scan_project(project_path):
         print(file.relative_to(path))
 
 # TODO: Add file size analysis
+API_KEY = "123456789abcdef"

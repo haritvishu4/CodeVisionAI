@@ -8,6 +8,14 @@ from analyzer import (
     list_imports,
     find_todos
 )
+from analyzer import (
+    count_lines,
+    count_functions,
+    count_classes,
+    list_imports,
+    find_todos,
+    detect_secrets
+)
 
 print("🚀 CodeVision AI")
 print("-" * 30)
@@ -34,3 +42,13 @@ if todos:
         print(todo)
 else:
     print("No TODO or FIXME found.")
+    print("\nPossible Secrets")
+print("-" * 30)
+
+secrets = detect_secrets(project_path)
+
+if secrets:
+    for secret in secrets:
+        print(secret)
+else:
+    print("No secrets found.")
